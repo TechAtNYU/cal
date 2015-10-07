@@ -1,0 +1,11 @@
+{
+  "name": "Cal",
+  "version": "0.0.0",
+  "dependencies": {
+    "requirejs": "latest",
+    "jquery": "latest",
+    "backbone-amd": "latest",
+    "underscore-amd": "latest",
+    "clndr": ">=1.2.15"
+  }
+}
