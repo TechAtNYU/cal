@@ -1,0 +1,14 @@
+machine:
+  timezone:
+    America/Los_Angeles
+
+test:
+  override:
+    - echo "No tests are needed"
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - rm $HOME/$CIRCLE_PROJECT_REPONAME/app/server.py
+      - turbolift -u $RAXUSER -a $RAXAPIKEY --os-rax-auth $RAXREGION upload -s $HOME/$CIRCLE_PROJECT_REPONAME/app -c $CONTAINER;
