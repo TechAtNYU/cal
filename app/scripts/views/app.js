@@ -11,7 +11,7 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 		var thisMonth = moment();
 		/** get events from api **/
 		function getData(getEventsThisYear) {
-			var tNyuApi = "https://api.tnyu.org/v2/events/";
+			var tNyuApi = "https://api.tnyu.org/v2/events/?page%5Blimit%5D=10&sort=%2bstartDateTime";
 			$.getJSON(tNyuApi, {
 
 			}).done(getEventsThisYear);
