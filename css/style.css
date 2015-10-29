@@ -43,7 +43,7 @@ div {
 }
 .calendar {
 	width: 100%;
-	height: 80%;
+	height: 75%;
 	margin-top: 90px;
 	position: absolute;
 }
@@ -135,11 +135,12 @@ html[xmlns] .clearfix {
 .clndr-next-button, .clndr-previous-button {
 	padding: 5px;
 	width: 50px;
-	cursor: pointer;
 }
 .event-listing {
 	float: left;
 	width: 35%;
+	height: 380px;
+	overflow: scroll;
 	padding-left: 10px;
 }
 .event-listing-title {
@@ -159,13 +160,11 @@ html[xmlns] .clearfix {
 }
 .bottom {
 	font-family: 'Inconsolata', Helvetica, Arial, Sans-Serif;	
-	position: fixed;
+	position: absolute;
 	width: 100%;
 	height: 30px;
 	padding: 5px;
 	text-align: center;
-	bottom: 0;
-	background-color: #d7552d;
 }
 @media only screen and (max-device-width: 480px) {
 	.clndr-controls, .clndr-grid {
