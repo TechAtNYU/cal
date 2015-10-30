@@ -79,7 +79,7 @@ html[xmlns] .clearfix {
 }
 .cal1 {
   max-width: 850px;
-  margin: 50px auto;
+  margin: 100px auto;
   font-family: 'Droid Sans Mono';
   font-size: 14px;
 }
@@ -90,14 +90,17 @@ html[xmlns] .clearfix {
 }
 .clndr-grid .days-of-the-week {
     width: 100%;
+    border-bottom: 2px solid white;
 }
  .clndr-grid .days-of-the-week .header-day {
     float: left;
     width: 14.2857%;
-    padding: 14px;
+    padding: 18px;
     text-align: center;
 }
-
+.days {
+   margin-top: -10px;
+}
 .day {
 	padding: 2em 2em 2em 2em;
 }
@@ -105,19 +108,23 @@ html[xmlns] .clearfix {
    float: left;
    text-align: center;
    width: 14.2857%;
-   height: 66px;
+   height: 75px;
+   display: inline-block;
+   border-right: 2px solid rgb(255, 255, 255);
+   border-bottom: 2px solid rgb(255, 255, 255);
  }
- .day.past{
- 	opacity: 0.4;
- }
- .day.today{
+.day.past{
+   opacity: 0.4;
+}
+.day.today {
  	background-color: white;
- }
- .day.event {
- 	border: 3px solid white;
- }
+}
+.day.event {
+ 	border-bottom: 3px solid rgb(25, 164, 71) !important;
+}
 .month {
 	float: center;
+	padding-bottom: 15px;
 }
 .left-align {
 	float: left;
@@ -139,7 +146,7 @@ html[xmlns] .clearfix {
 .event-listing {
 	float: left;
 	width: 35%;
-	height: 380px;
+	height: 420px;
 	overflow: scroll;
 	padding-left: 10px;
 }
