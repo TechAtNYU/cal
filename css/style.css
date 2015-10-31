@@ -158,6 +158,13 @@ html[xmlns] .clearfix {
 	padding: 5px;
 	border-bottom: 1px solid black;
 }
+.event-item.true {
+	background-color: red;
+}
+.event-item.false {
+	background-color: green;
+}
+
 .event-item-name {
 	padding: 5px;
 	font-size: 16px;
