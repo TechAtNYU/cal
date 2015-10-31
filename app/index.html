@@ -45,7 +45,7 @@
           <div class="event-listing">
             <div class="event-listing-title">EVENTS THIS MONTH</div>
             <% _.each(eventsThisMonth, function(event) { %>
-                <div class="event-item">
+                <div class="event-item <%= event.isPast %>">
                   <a href="<%= event.rsvpUrl %>"><div class="event-item-name"><%= event.title %></div></a>
                   <div class="event-item-description"><%= event.description %></div>
                 </div>
