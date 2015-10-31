@@ -51,7 +51,7 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 		  	this.endDate = moment(end).format('YYYY-MM-DD');
 		  	this.description = description;
 		  	this.title = title;
-		  	this.rsvpUrl = rsvpUrl;
+		  	rsvpUrl ? this.rsvpUrl = rsvpUrl : this.rsvpUrl = "http://rsvp.techatnyu.org/";
 		  }
 
 		 function populateCalendar() {
