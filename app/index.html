@@ -44,6 +44,7 @@
           </div>
           <div class="event-listing">
             <div class="event-listing-title">EVENTS THIS MONTH</div>
+            <div class="sort-options"><span class="sortByUpcoming">Upcoming</span> | <span class="sortByPast">Past</span></div>
             <% _.each(eventsThisMonth, function(event) { %>
                 <div class="event-item <%= event.isPast %>">
                   <a href="<%= event.rsvpUrl %>"><div class="event-item-name"><%= event.title %></div></a>
@@ -56,7 +57,6 @@
       </div>
        <div class="bottom"><a href="webcal://calendar.techatnyu.org">Subscribe to this calendar feed.</a></div>
       </main>
-     
      <script data-main="scripts/main.js" src="scripts/vendor/require.js"></script>
   </body>
 </html>
