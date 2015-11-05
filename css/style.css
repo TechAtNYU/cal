@@ -10,6 +10,8 @@ a {
 	color: black;
 	text-decoration: none;
 }
+
+
 header { 
 	margin: 0 auto;
 	z-index: 1000;
@@ -159,10 +161,11 @@ html[xmlns] .clearfix {
 	border-bottom: 1px solid black;
 }
 .event-item.true {
-	background-color: red;
+	display: none;
 }
-.event-item.false {
-	background-color: green;
+.sort-options {
+	text-align: center;
+	padding: 5px;
 }
 
 .event-item-name {
