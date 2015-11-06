@@ -160,7 +160,7 @@ html[xmlns] .clearfix {
 	padding: 5px;
 	border-bottom: 1px solid black;
 }
-.event-item.true {
+.event-item.isPasttrue.currentMonthtrue  {
 	display: none;
 }
 .sort-options {
