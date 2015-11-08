@@ -46,7 +46,7 @@
             <div class="event-listing-title">EVENTS THIS MONTH</div>
             <div class="sort-options"><span class="sortByUpcoming">Upcoming</span> | <span class="sortByPast">Past</span></div>
             <% _.each(eventsThisMonth, function(event) { %>
-                <div class="event-item isPast<%= event.isPast %> currentMonth<%= event.isInCurrentMonth %>">
+                <div class="event-item isPast<%= event.isPast %> currentMonth<%= event.isInCurrentMonth %> <%= event.state %>">
                   <a href="<%= event.rsvpUrl %>"><div class="event-item-name"><%= event.title %></div></a>
                   <div class="event-item-description"><%= event.description %></div>
                 </div>
