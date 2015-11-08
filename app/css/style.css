@@ -124,6 +124,9 @@ html[xmlns] .clearfix {
 .day.event {
  	border-bottom: 3px solid rgb(25, 164, 71) !important;
 }
+.day.event:hover {
+	
+}
 .month {
 	float: center;
 	padding-bottom: 15px;
@@ -167,7 +170,9 @@ html[xmlns] .clearfix {
 	text-align: center;
 	padding: 5px;
 }
-
+.active {
+	border-bottom: 3px solid rgb(25, 164, 71);
+}
 .event-item-name {
 	padding: 5px;
 	font-size: 16px;
