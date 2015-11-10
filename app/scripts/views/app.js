@@ -1,10 +1,5 @@
 var calendars = {};
 define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr) {
-  /*var App = Backbone.View.extend({
-    initialize: function() {
-      console.log( 'Wahoo!' );
-    }
-  });*/
 	$(document).ready(function() {
 		var currentYear;
 		var now = moment();
@@ -39,25 +34,6 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 
 			}).done(getEventsThisYear);
 		}
-		/*
-		function toggleEventState() {
-			var calendarDay = this.className.match(/calendar[-]day[-](20)\d\d[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])/);
-			var date = calendarDay[0].substring(13);
-			var events = calendars.clndr1.eventsThisInterval;
-			for (var i = 0; i < events.length; i++) {
-				if (date === events[i].startDate) {
-					events[i].state = "active";
-					calendars.clndr1.render();
-				}
-			}	
-		}
-		function makeInactive() {
-			var events = calendars.clndr1.eventsThisInterval;
-			for (var i = 0; i < events.length; i++) {
-				events[i].state = "notactive";
-				//calendars.clndr1.render();
-			}
-		}*/
 		getData(function(json) {
     		currentYear  = json.data.filter(function(event) {
 				var date = event.attributes.startDateTime;
@@ -67,12 +43,6 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 			 });
     		populateCalendar();
 		});
-
-		  // var eventArray = [
-		  //   { startDate: thisMonth + '-10', endDate: thisMonth + '-14', title: 'Multi-Day Event' },
-		  //   { startDate: thisMonth + '-21', endDate: thisMonth + '-23', title: 'Another Multi-Day Event' },
-		  //   { date: thisMonth + '-01', title: 'Single Day Event' }
-		  // ];
 		 function isInPast(eventDate) {
 			if (eventDate.isAfter(now)) {
 			    return false;
@@ -115,18 +85,12 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 		  		if (description) {
 		  			description = urlify(currentAttr.description);
 		  		}	
-		  		//console.log(currentAttr.rsvpUrl);
-		  		//console.log(moment(currentAttr.startDateTime).format('YYYY-MM-DD'));
 		  		eventArray.push(new SimpleEvent(currentAttr.startDateTime, currentAttr.endDateTime, currentAttr.title, description, currentAttr.rsvpUrl))
 		 	 }
 
 		 	 calendars.clndr1 = $('.cal1').clndr({
 				template: $('#test').html(),
 			    events: eventArray,
-			    // constraints: {
-			    //   startDate: '2013-11-01',
-			    //   endDate: '2013-11-15'
-			    // },
 			    clickEvents: {
 			      click: function(target) {
 			      	for (var i = 0; i < target.events.length; i++) {
@@ -136,12 +100,6 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 						else target.events[i].state = "active";
 					}
 			        calendars.clndr1.render();
-			        // if you turn the `constraints` option on, try this out:
-			        // if($(target.element).hasClass('inactive')) {
-			        //   console.log('not a valid datepicker date.');
-			        // } else {
-			        //   console.log('VALID datepicker date.');
-			        // }
 			      },
 			      nextMonth: function() {
 			        console.log('next month.');
@@ -179,11 +137,6 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 						if (!showingPast)
 					  	sortEvents("past");
 					});
-					/*$('.day.event').hover(function() {
-						makeInactive();
-						toggleEventState.call(this);
-					});*/
-				
   				}
 			});	
 		}
