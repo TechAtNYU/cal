@@ -133,9 +133,7 @@ html[xmlns] .clearfix {
 .day.event {
  	border-bottom: 3px solid rgb(25, 164, 71) !important;
 }
-.day.event:hover {
-	
-}
+
 .month {
 	float: center;
 	padding-bottom: 15px;
