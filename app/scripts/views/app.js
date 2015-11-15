@@ -109,6 +109,7 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 			      },
 			      onMonthChange: function() {
 			        console.log('month changed.');
+			        setValues();
 			      },
 			      nextYear: function() {
 			        console.log('next year.');
@@ -139,6 +140,13 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 					});
   				}
 			});	
+		}
+		function setValues() {
+			if (clndr1.month.get('month') !== now.get('month')) {
+				if ($(".sort-options").css('display') != 'none') {
+					$(".sort-options").hide();
+				}
+			}
 		}
 	});
 
