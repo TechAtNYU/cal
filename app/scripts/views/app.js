@@ -1,10 +1,11 @@
-var calendars = {};
+var clndr1;
 define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr) {
 	$(document).ready(function() {
 		var currentYear;
 		var now = moment();
 		var showingPast = false;
 		var showingCurrent = true;
+
 		function sortEvents(sortBy) {
 			if (sortBy === 'past') {
 				showingPast = true;
@@ -42,6 +43,7 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 				return ((year === now.year()) && (!isInternal));
 			 });
     		populateCalendar();
+    		setValues();
 		});
 		 function isInPast(eventDate) {
 			if (eventDate.isAfter(now)) {
@@ -54,9 +56,10 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 		 	if (eventDate.get('month') === now.get('month')) {
 		 		return true;
 		 	}
-		 	else
+		 	else {
 		 		return false;
 		 	}
+		 }
 	 	function urlify(text) {
 		    var urlRegex = /(https?:\/\/[^\s]+)/g;
 		    return text.replace(urlRegex, function(url) {
@@ -88,18 +91,19 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 		  		eventArray.push(new SimpleEvent(currentAttr.startDateTime, currentAttr.endDateTime, currentAttr.title, description, currentAttr.rsvpUrl))
 		 	 }
 
-		 	 calendars.clndr1 = $('.cal1').clndr({
+		 	  clndr1 = $('.cal1').clndr({
 				template: $('#test').html(),
 			    events: eventArray,
 			    clickEvents: {
 			      click: function(target) {
+
 			      	for (var i = 0; i < target.events.length; i++) {
 			      		if (target.events[i].state === "active") {
 			      			target.events[i].state = "inactive"
 			      		}
 						else target.events[i].state = "active";
 					}
-			        calendars.clndr1.render();
+			        clndr1.render();
 			      },
 			      nextMonth: function() {
 			        console.log('next month.');
@@ -108,6 +112,7 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 			        console.log('previous month.');
 			      },
 			      onMonthChange: function() {
+			      	setValues();
 			        console.log('month changed.');
 			      },
 			      nextYear: function() {
@@ -139,6 +144,13 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 					});
   				}
 			});	
+		}
+		function setValues() {
+			if (clndr1.month.get('month') !== now.get('month')) {
+				if ($(".sort-options").css('display') != 'none') {
+					$(".sort-options").hide();
+				}
+			}
 		}
 	});
 
