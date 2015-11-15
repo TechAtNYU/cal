@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width">
      <script src="//cdn.rawgit.com/jpillora/xdomain/0.7.3/dist/xdomain.min.js" slave="https://api.tnyu.org/v2/proxy.html"></script>
      <link rel="stylesheet" type="text/css" href="css/style.css">
-     <link href='https://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
   </head>
   <body>
     <header>
@@ -44,7 +43,7 @@
           </div>
           <div class="event-listing">
             <div class="event-listing-title">EVENTS THIS MONTH</div>
-            <div class="sort-options"><span class="sortByUpcoming">Upcoming</span> | <span class="sortByPast">Past</span></div>
+            <div class="sort-options"><span class="sortByPast">Past </span>|<span class="sortByUpcoming"> Upcoming</span> </div>
             <% _.each(eventsThisMonth, function(event) { %>
                 <div class="event-item isPast<%= event.isPast %> currentMonth<%= event.isInCurrentMonth %> <%= event.state %>">
                   <a href="<%= event.rsvpUrl %>"><div class="event-item-name"><%= event.title %></div></a>
