@@ -175,8 +175,9 @@ html[xmlns] .clearfix {
 }
 .sort-options {
 	text-align: center;
-	padding: 5px;
+	padding: 15px;
 }
+
 .active {
 	border-bottom: 3px solid rgb(25, 164, 71);
 }
