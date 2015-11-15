@@ -1,4 +1,4 @@
-var calendars = {};
+var clndr;
 define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr) {
 	$(document).ready(function() {
 		var currentYear;
@@ -88,7 +88,7 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 		  		eventArray.push(new SimpleEvent(currentAttr.startDateTime, currentAttr.endDateTime, currentAttr.title, description, currentAttr.rsvpUrl))
 		 	 }
 
-		 	 calendars.clndr1 = $('.cal1').clndr({
+		 	 clndr1 = $('.cal1').clndr({
 				template: $('#test').html(),
 			    events: eventArray,
 			    clickEvents: {
@@ -99,7 +99,7 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 			      		}
 						else target.events[i].state = "active";
 					}
-			        calendars.clndr1.render();
+			        clndr1.render();
 			      },
 			      nextMonth: function() {
 			        console.log('next month.');
@@ -130,13 +130,19 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 			    adjacentDaysChangeMonth: false,
 			    doneRendering: function() {
     				$(".sortByUpcoming" ).click(function() {
-    					if (!showingCurrent)
-					  	sortEvents("upcoming");
+    					if (!showingCurrent) {
+    						$(this).addClass('active');
+    						$(".sortByPast").removeClass('active');
+					  		sortEvents("upcoming");
+					  	}
 					});
 
 					$( ".sortByPast" ).click(function() {
-						if (!showingPast)
-					  	sortEvents("past");
+						if (!showingPast) {
+							$(this).addClass('active');
+							$(".sortByUpcoming").removeClass('active');
+						  	sortEvents("past");
+						}
 					});
   				}
 			});	
