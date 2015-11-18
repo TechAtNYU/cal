@@ -90,7 +90,7 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 		  		}	
 		  		eventArray.push(new SimpleEvent(currentAttr.startDateTime, currentAttr.endDateTime, currentAttr.title, description, currentAttr.rsvpUrl))
 		 	 }
-
+		 	 
 		 	  clndr1 = $('.cal1').clndr({
 				template: $('#test').html(),
 			    events: eventArray,
@@ -114,6 +114,7 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 			      onMonthChange: function() {
 			      	setValues();
 			        console.log('month changed.');
+			        setValues();
 			      },
 			      nextYear: function() {
 			        console.log('next year.');
@@ -134,13 +135,19 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 			    adjacentDaysChangeMonth: false,
 			    doneRendering: function() {
     				$(".sortByUpcoming" ).click(function() {
-    					if (!showingCurrent)
-					  	sortEvents("upcoming");
+    					if (!showingCurrent) {
+    						$(this).addClass('active');
+    						$(".sortByPast").removeClass('active');
+					  		sortEvents("upcoming");
+					  	}
 					});
 
 					$( ".sortByPast" ).click(function() {
-						if (!showingPast)
-					  	sortEvents("past");
+						if (!showingPast) {
+							$(this).addClass('active');
+							$(".sortByUpcoming").removeClass('active');
+						  	sortEvents("past");
+						}
 					});
   				}
 			});	
