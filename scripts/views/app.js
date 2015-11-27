@@ -84,6 +84,7 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 
 		 	for (var i = 0; i < nutso.length; i++) {
 		  		var currentAttr = nutso[i].attributes;
+		  		console.log(currentAttr.status);
 		  		var description = currentAttr.description;
 		  		if (description) {
 		  			description = urlify(currentAttr.description);
@@ -96,7 +97,10 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 			    events: eventArray,
 			    clickEvents: {
 			      click: function(target) {
-
+			      	var all = clndr1.eventsThisInterval;
+			      	for (var j = 0; j < all.length; j++) {
+			      			all[j].state = "inactive"
+					}
 			      	for (var i = 0; i < target.events.length; i++) {
 			      		if (target.events[i].state === "active") {
 			      			target.events[i].state = "inactive"
@@ -104,6 +108,7 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 						else target.events[i].state = "active";
 					}
 			        clndr1.render();
+			        setValues();
 			      },
 			      nextMonth: function() {
 			        console.log('next month.');
@@ -113,8 +118,6 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 			      },
 			      onMonthChange: function() {
 			      	setValues();
-			        console.log('month changed.');
-			        setValues();
 			      },
 			      nextYear: function() {
 			        console.log('next year.');
@@ -134,6 +137,7 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 			    showAdjacentMonths: true,
 			    adjacentDaysChangeMonth: false,
 			    doneRendering: function() {
+			    	
     				$(".sortByUpcoming" ).click(function() {
     					if (!showingCurrent) {
     						$(this).addClass('active');
@@ -141,7 +145,6 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 					  		sortEvents("upcoming");
 					  	}
 					});
-
 					$( ".sortByPast" ).click(function() {
 						if (!showingPast) {
 							$(this).addClass('active');
