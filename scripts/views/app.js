@@ -1,8 +1,8 @@
 var clndr1;
 define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr) {
 	$(document).ready(function() {
-		var currentYear;
 		var now = moment();
+		var events;
 		var showingPast = false;
 		var showingCurrent = true;
 
@@ -29,22 +29,22 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 			}
 		}
 		/** get events from api **/
-		function getData(getEventsThisYear) {
+		function getData(getEvents) {
 			var tNyuApi = "https://api.tnyu.org/v2/events/?page%5Blimit%5D=10&sort=%2bstartDateTime";
 			$.getJSON(tNyuApi, {
 
-			}).done(getEventsThisYear);
+			}).done(getEvents);
 		}
+
 		getData(function(json) {
-    		currentYear  = json.data.filter(function(event) {
-				var date = event.attributes.startDateTime;
+    		events  = json.data.filter(function(event) {
 				var isInternal = event.attributes.isInternal;
-				var year = moment(date).year();
-				return ((year === now.year()) && (!isInternal));
+				return (!isInternal);
 			 });
     		populateCalendar();
     		setValues();
 		});
+
 		 function isInPast(eventDate) {
 			if (eventDate.isAfter(now)) {
 			    return false;
@@ -79,7 +79,7 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 		  }
 
 		 function populateCalendar() {
-		 	var nutso = currentYear;
+		 	var nutso = events;
 		 	var eventArray = [];
 
 		 	for (var i = 0; i < nutso.length; i++) {
@@ -134,7 +134,7 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 			      endDate: 'endDate',
 			      singleDay: 'date'
 			    },
-			    showAdjacentMonths: true,
+			    showAdjacentMonths: false,
 			    adjacentDaysChangeMonth: false,
 			    doneRendering: function() {
 			    	
