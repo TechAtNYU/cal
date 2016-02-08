@@ -37,7 +37,7 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 		}
 
 		getData(function(json) {
-    		events  = json.data.filter(function(event) {
+    		events = json.data.filter(function(event) {
 				var isInternal = event.attributes.isInternal;
 				return (!isInternal);
 			 });
@@ -69,6 +69,8 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 
 		 function SimpleEvent(start, end, title, description, rsvpUrl) {
 		 	var start = moment(start);
+		 	console.log(start);
+		 	console.log(start.get('day'));
 		  	this.startDate = start.format('YYYY-MM-DD');
 		  	this.isPast = isInPast(start);
 		  	this.isInCurrentMonth = isInCurrentMonth(start);
@@ -84,7 +86,6 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 
 		 	for (var i = 0; i < nutso.length; i++) {
 		  		var currentAttr = nutso[i].attributes;
-		  		console.log(currentAttr.status);
 		  		var description = currentAttr.description;
 		  		if (description) {
 		  			description = urlify(currentAttr.description);
@@ -95,6 +96,7 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 		 	  clndr1 = $('.cal1').clndr({
 				template: $('#test').html(),
 			    events: eventArray,
+			    forceSixRows: false,
 			    clickEvents: {
 			      click: function(target) {
 			      	var all = clndr1.eventsThisInterval;
@@ -134,7 +136,6 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 			      endDate: 'endDate',
 			      singleDay: 'date'
 			    },
-			    showAdjacentMonths: false,
 			    adjacentDaysChangeMonth: false,
 			    doneRendering: function() {
 			    	
