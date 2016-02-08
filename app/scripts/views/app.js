@@ -136,7 +136,8 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 			      endDate: 'endDate',
 			      singleDay: 'date'
 			    },
-			    adjacentDaysChangeMonth: false,
+			    showAdjacentMonths: true,
+			    adjacentDaysChangeMonth: true,
 			    doneRendering: function() {
 			    	
     				$(".sortByUpcoming" ).click(function() {
