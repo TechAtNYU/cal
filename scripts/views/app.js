@@ -69,8 +69,6 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 
 		 function SimpleEvent(start, end, title, description, rsvpUrl) {
 		 	var start = moment(start);
-		 	console.log(start);
-		 	console.log(start.get('day'));
 		  	this.startDate = start.format('YYYY-MM-DD');
 		  	this.isPast = isInPast(start);
 		  	this.isInCurrentMonth = isInCurrentMonth(start);
@@ -112,24 +110,9 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 			        clndr1.render();
 			        setValues();
 			      },
-			      nextMonth: function() {
-			        console.log('next month.');
-			      },
-			      previousMonth: function() {
-			        console.log('previous month.');
-			      },
 			      onMonthChange: function() {
 			      	setValues();
 			      },
-			      nextYear: function() {
-			        console.log('next year.');
-			      },
-			      previousYear: function() {
-			        console.log('previous year.');
-			      },
-			      onYearChange: function() {
-			        console.log('year changed.');
-			      }
 			    },
 			    multiDayEvents: {
 			      startDate: 'startDate',
