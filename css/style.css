@@ -206,7 +206,13 @@ html[xmlns] .clearfix {
 	footer {
 		height: 20%;
 	}
-
+	#logo {
+		width: 35%;
+	}
+	header h3, p {
+		width: 100%;
+		text-align: center;
+	}
 
 }
 @media only screen and (max-width: 480px) {
