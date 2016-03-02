@@ -1,0 +1,10 @@
+
+{
+    "preset": "google",
+    "validateIndentation": "\t",
+    "maximumLineLength": 120,
+    "excludeFiles": [
+        "node_modules/**",
+        "app/js/lib/**"
+    ]
+}
