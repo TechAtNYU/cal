@@ -1,5 +1,5 @@
 var clndr1;
-define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr) {
+define(["jquery", "underscore", "moment", "clndr"], function($, _, moment, clndr) {
 	$(document).ready(function() {
 		var now = moment();
 		var events;
@@ -7,7 +7,7 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 		var showingCurrent = true;
 
 		function sortEvents(sortBy) {
-			if (sortBy === 'past') {
+			if (sortBy === "past") {
 				showingPast = true;
 				showingCurrent = false;
 				$( ".event-item.isPasttrue.currentMonthtrue" ).each(function() {
@@ -30,7 +30,7 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 		}
 		/** get events from api **/
 		function getData(getEvents) {
-			var tNyuApi = "https://api.tnyu.org/v2/events/?page%5Blimit%5D=10&sort=%2bstartDateTime";
+			var tNyuApi = "https://api.tnyu.org/v3/events/?page%5Blimit%5D=10&sort=%2bstartDateTime";
 			$.getJSON(tNyuApi, {
 
 			}).done(getEvents);
@@ -38,8 +38,10 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 
 		getData(function(json) {
     		events = json.data.filter(function(event) {
-				var isInternal = event.attributes.isInternal;
-				return (!isInternal);
+    			var details = event.attributes;
+    			var status = details.status;
+				var isInternal = details.isInternal;
+				return ((!isInternal) && status !== "draft");
 			 });
     		populateCalendar();
     		setValues();
@@ -53,7 +55,7 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 		    	return true;
 		 }
 		 function isInCurrentMonth(eventDate) {
-		 	if (eventDate.get('month') === now.get('month')) {
+		 	if (eventDate.get("month") === now.get("month")) {
 		 		return true;
 		 	}
 		 	else {
@@ -69,10 +71,10 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 
 		 function SimpleEvent(start, end, title, description, rsvpUrl) {
 		 	var start = moment(start);
-		  	this.startDate = start.format('YYYY-MM-DD');
+		  	this.startDate = start.format("YYYY-MM-DD");
 		  	this.isPast = isInPast(start);
 		  	this.isInCurrentMonth = isInCurrentMonth(start);
-		  	this.endDate = moment(end).format('YYYY-MM-DD');
+		  	this.endDate = moment(end).format("YYYY-MM-DD");
 		  	this.description = description;
 		  	this.title = title;
 		  	rsvpUrl ? this.rsvpUrl = rsvpUrl : this.rsvpUrl = "http://rsvp.techatnyu.org/";
@@ -91,8 +93,8 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 		  		eventArray.push(new SimpleEvent(currentAttr.startDateTime, currentAttr.endDateTime, currentAttr.title, description, currentAttr.rsvpUrl))
 		 	 }
 		 	 
-		 	  clndr1 = $('.cal1').clndr({
-				template: $('#test').html(),
+		 	  clndr1 = $(".cal1").clndr({
+				template: $("#test").html(),
 			    events: eventArray,
 			    forceSixRows: false,
 			    clickEvents: {
@@ -115,9 +117,9 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 			      },
 			    },
 			    multiDayEvents: {
-			      startDate: 'startDate',
-			      endDate: 'endDate',
-			      singleDay: 'date'
+			      startDate: "startDate",
+			      endDate: "endDate",
+			      singleDay: "date"
 			    },
 			    showAdjacentMonths: true,
 			    adjacentDaysChangeMonth: true,
@@ -125,15 +127,15 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 			    	
     				$(".sortByUpcoming" ).click(function() {
     					if (!showingCurrent) {
-    						$(this).addClass('active');
-    						$(".sortByPast").removeClass('active');
+    						$(this).addClass("active");
+    						$(".sortByPast").removeClass("active");
 					  		sortEvents("upcoming");
 					  	}
 					});
 					$( ".sortByPast" ).click(function() {
 						if (!showingPast) {
-							$(this).addClass('active');
-							$(".sortByUpcoming").removeClass('active');
+							$(this).addClass("active");
+							$(".sortByUpcoming").removeClass("active");
 						  	sortEvents("past");
 						}
 					});
@@ -141,8 +143,8 @@ define(['jquery', 'underscore', 'moment', 'clndr'], function($, _, moment, clndr
 			});	
 		}
 		function setValues() {
-			if (clndr1.month.get('month') !== now.get('month')) {
-				if ($(".sort-options").css('display') != 'none') {
+			if (clndr1.month.get("month") !== now.get("month")) {
+				if ($(".sort-options").css("display") != "none") {
 					$(".sort-options").hide();
 				}
 			}
