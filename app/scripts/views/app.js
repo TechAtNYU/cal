@@ -30,7 +30,7 @@ define(["jquery", "underscore", "moment", "clndr"], function($, _, moment, clndr
 		}
 		/** get events from api **/
 		function getData(getEvents) {
-			var tNyuApi = "https://api.tnyu.org/v3/events/?page%5Blimit%5D=10&sort=%2bstartDateTime";
+			var tNyuApi = "https://api.tnyu.org/v3/events/?sort=startDateTime";
 			$.getJSON(tNyuApi, {
 
 			}).done(getEvents);
