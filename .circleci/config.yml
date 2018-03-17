@@ -1,9 +1,3 @@
-aliases:
- - &filter-only-master
-   branches:
-     only:
-       - master
-
 version: 2
 jobs:
   deploy-website:
@@ -27,8 +21,7 @@ workflows:
   version: 2
   build_and_deploy:
     jobs:
-      - deploy-website
-        filters:
-          branches:
-            only:
-              - master
+      - deploy-website:
+          filters:
+            branches:
+              only: master
