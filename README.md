@@ -6,6 +6,10 @@ Made with [CLNDR](http://kylestetz.github.io/CLNDR/), Moment.js, Jquery Undersco
 
 ## To run
 
-1. Clone repo
-2. cd into the app folder and run python server.py
+```
+git clone https://github.com/TechAtNYU/cal.git
+cd app
+python2.7 server.py
+```
+
 
