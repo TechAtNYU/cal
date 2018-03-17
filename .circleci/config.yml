@@ -16,8 +16,8 @@ jobs:
       - run: 
           name: Deploying Cal
           command: |
-          rm $HOME/$CIRCLE_PROJECT_REPONAME/app/server.py
-          turbolift -u $RAXUSER -a $RAXAPIKEY --os-rax-auth $RAXREGION upload -s $HOME/$CIRCLE_PROJECT_REPONAME/app -c $CONTAINER;
+            rm $HOME/$CIRCLE_PROJECT_REPONAME/app/server.py
+            turbolift -u $RAXUSER -a $RAXAPIKEY --os-rax-auth $RAXREGION upload -s $HOME/$CIRCLE_PROJECT_REPONAME/app -c $CONTAINER;
 
 
 workflows:
