@@ -5,9 +5,13 @@ set -e
 
 # show where we are on the machine
 pwd
-remote=$(git config remote.origin.url)
 
-git add app && git commit -m "Initial app subtree commit" > /dev/null 2>&1
-git subtree push --prefix app origin gh-pages > /dev/null 2>&1
+if git diff-index --quiet HEAD --; then
+    # no changes
+    echo "No changes."
+else
+  git add app && git commit -m "Initial app subtree commit"
+  git subtree push --prefix app origin gh-pages
+fi
 
 echo "Finished Deployment!"
