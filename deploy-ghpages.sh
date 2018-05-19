@@ -8,12 +8,11 @@ pwd
 
 if git diff-index --quiet HEAD --
 then
-    # no changes
-    echo "No changes."
+  # no changes
+  echo "No changes."
 else
-  echo "changes"
-  # git add app && git commit -m "Initial app subtree commit"
-  # git subtree push --prefix app origin gh-pages
+  git add app && git commit -m "Initial app subtree commit"
+  git subtree push --prefix app origin gh-pages
 fi
 
 echo "Finished Deployment!"
