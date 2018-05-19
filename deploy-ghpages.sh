@@ -11,8 +11,8 @@ remote=$(git config remote.origin.url)
 git config --global user.email "$GH_EMAIL" > /dev/null 2>&1
 git config --global user.name "$GH_NAME" > /dev/null 2>&1
 
-git add dist && git commit -m "Initial dist subtree commit"
-git subtree push --prefix dist origin gh-pages
+git add app && git commit -m "Initial app subtree commit"
+git subtree push --prefix app origin gh-pages
 
 git checkout gh-pages
 git merge master --no-edit
