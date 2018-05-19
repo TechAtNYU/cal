@@ -12,7 +12,19 @@ jobs:
       - checkout
       - run: 
           name: Deploying Cal [PROD]
-          command: ./deploy-ghpages.sh
+          command: |
+            set -e
+            pwd
+            if git diff-index --quiet HEAD --
+            then
+              # no changes
+              echo "No changes."
+            else
+              git add app && git commit -m "Initial app subtree commit"
+              git subtree push --prefix app origin gh-pages
+            fi
+
+            echo "Finished Deployment!"
 
 workflows:
   version: 2
