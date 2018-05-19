@@ -6,6 +6,9 @@ jobs:
       - image: circleci/python:2.7.14-stretch-browsers
 
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "0a:c7:2a:ff:3c:13:82:56:f1:84:00:ad:a2:98:4b:f8"
       - checkout
       - run: 
           name: Deploying Cal [PROD]
